@@ -1,8 +1,10 @@
-package com.dikku.mvvm_app_demonstration;
+package com.dikku.mvvm_app_demonstration.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.dikku.mvvm_app_demonstration.R;
 
 public class MainActivity extends AppCompatActivity {
 
