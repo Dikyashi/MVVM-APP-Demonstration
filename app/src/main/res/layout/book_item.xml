@@ -6,23 +6,25 @@
     android:layout_margin="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/book_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/book_item_rightLayout"/>
+            android:layout_width="80dp"
+            android:contentDescription="Book Image"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toStartOf="@id/book_item_rightLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/book_item_rightLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:orientation="vertical"
-            app:layout_constraintStart_toEndOf="@id/book_item_rightLayout"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="4dp" >
+            app:layout_constraintStart_toEndOf="@id/book_imageView"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/book_item_title"
@@ -42,7 +44,6 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.cardview.widget.CardView>

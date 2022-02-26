@@ -11,6 +11,6 @@ import retrofit2.http.Query;
  */
 public interface BookSearchInterface {
 
-    @GET("/books")
+    @GET("/books/v1/volumes")
     Call<VolumeResponse> searchBook(@Query("q") String key,@Query("inauthor") String author);
 }

@@ -5,7 +5,11 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,12 +31,16 @@ public class BookRepository {
 
         mVolumeResponseMutableLiveData = new MutableLiveData<>();
 
-        OkHttpClient client = new OkHttpClient.Builder().build();
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.level(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-        Retrofit retrofitBuilder = new Retrofit.Builder().baseUrl(BOOK_SEARCH_URL)
+
+        Retrofit retro = new Retrofit.Builder().baseUrl(BOOK_SEARCH_URL)
                 .addConverterFactory(GsonConverterFactory.create()).client(client)
-                .build();
-        mBookSearchInterface = retrofitBuilder.create(BookSearchInterface.class);
+               .build();
+
+        mBookSearchInterface = retro.create(BookSearchInterface.class);
 
     }
 
@@ -41,27 +49,22 @@ public class BookRepository {
     }
 
     public void searchVolume(String key, String author) {
-        Call<VolumeResponse> call = mBookSearchInterface.searchBook(key, author);
+        mBookSearchInterface.searchBook(key,author)
+                .enqueue(new Callback<VolumeResponse>() {
+                    @Override
+                    public void onResponse(Call<VolumeResponse> call, Response<VolumeResponse> response) {
 
-        call.enqueue(new Callback<VolumeResponse>() {
-            @Override
-            public void onResponse(Call<VolumeResponse> call, Response<VolumeResponse> response) {
-                if (!response.isSuccessful()) {
-                    Log.d(TAG, response.code() + "");
-                } else {
-                    mVolumeResponseMutableLiveData.postValue(response.body());
-                }
-            }
+                        if (response.body() != null) {
+                            mVolumeResponseMutableLiveData.postValue(response.body());
+                        }
 
-            @Override
-            public void onFailure(Call<VolumeResponse> call, Throwable t) {
+                    }
 
-                Log.d(TAG, t.getMessage());
-                mVolumeResponseMutableLiveData.postValue(null);
-
-            }
-        });
-
-
+                    @Override
+                    public void onFailure(Call<VolumeResponse> call, Throwable t) {
+                        mVolumeResponseMutableLiveData.postValue(null);
+                        Log.d("Hello",t.getMessage());
+                    }
+                });
     }
 }

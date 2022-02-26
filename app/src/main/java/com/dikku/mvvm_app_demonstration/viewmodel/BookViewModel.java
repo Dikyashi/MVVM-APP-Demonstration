@@ -21,7 +21,7 @@ public class BookViewModel extends AndroidViewModel {
         super(application);
     }
 
-    private void init(){
+    public void init(){
         mBookRepository = new BookRepository();
         mVolumeResponseLiveData = mBookRepository.getVolumeResponseMutableLiveData();
     }

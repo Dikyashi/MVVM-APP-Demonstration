@@ -30,7 +30,7 @@ public class VolumeInfo {
     @SerializedName("printType")
     private String printType;
 
-    @SerializedName("smallThumbnail")
+    @SerializedName("imageLinks")
     private VolumeImageLink smallThumbnail;
 
     public String getTitle() {
