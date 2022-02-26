@@ -56,7 +56,7 @@ For this project we will be using glide to load Images
 
 LiveData is an observable data holder class. Unlike a regular observable, LiveData is lifecycle-aware, meaning it respects the lifecycle of other app components, such as activities, fragments, or services. This awareness ensures LiveData only updates app component observers that are in an active lifecycle state.
 
-For this project, LifeData Observes the Incoming request and Updates the Observers when a new data is made available or changed
+For this project, LifeData Observes the Incoming request and Updates the ######Active Observers when a new data is made available or changed
 
 ```
     //LiveData and View Model
