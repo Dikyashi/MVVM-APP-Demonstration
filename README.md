@@ -1,5 +1,5 @@
-# MVVM-APP-Demonstration
-MVVM App using Retrofit and Glide
+# Android:MVVM-APP-Demonstration
+Android app using MVVM with Retrofit and Glide
 
 Model–view–viewmodel is a software architectural pattern that facilitates the separation of the development of the graphical user interface from the Data.  
 
